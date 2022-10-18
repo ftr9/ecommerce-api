@@ -1,0 +1,8 @@
+
+{"from":"ADMIN","to":"samik@gmail.com","subject":"order status","message":"your order 74b50ad1-b774-4c5f-829a-fcad9f379073 status changed to delivered","sentAt":"2022-10-18T13:24:36.503Z"}
+{"from":"ADMIN","to":"samik@gmail.com","subject":"order status","message":"your order 5c86e687-26ed-4f51-b57f-99e5b448391b status changed to delivering","sentAt":"2022-10-18T17:51:16.369Z"}
+{"from":"ADMIN","to":"samik@gmail.com","subject":"order status","message":"your order 5c86e687-26ed-4f51-b57f-99e5b448391b status changed to delivered","sentAt":"2022-10-18T17:51:38.229Z"}
+{"from":"samik@gmail.com","to":"ADMIN","subject":"order status","message":"the order b67e12b4-1163-4845-b1a8-b9c65cf01be4 is cancelled by user","sentAt":"2022-10-18T17:56:29.018Z"}
+{"from":"ferlan@gmail.com","to":"ADMIN","subject":"order status","message":"the order 24fb669c-4e29-4d1c-aba9-4eaa81ea9a7d is cancelled by user","sentAt":"2022-10-18T18:16:36.272Z"}
+{"from":"ferlan@gmail.com","to":"ADMIN","subject":"order status","message":"the order 24fb669c-4e29-4d1c-aba9-4eaa81ea9a7d is cancelled by user","sentAt":"2022-10-18T18:16:45.829Z"}
+{"from":"ferlani@gmail.com","to":"ADMIN","subject":"order status","message":"the order 5de44183-ea1c-4367-8dda-7aeec6e9c5cd is cancelled by user","sentAt":"2022-10-18T18:32:31.273Z"}

@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider =  "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Products{
+  id                Int @id @default(autoincrement())
+  name              String @unique
+  description       String @db.LongText
+  price             Int 
+  inStock           Boolean @default(true)
+  category          String
+  images            Images[]
+  cart              Cart[]
+}
+
+model Images{
+  id          Int @id @default(autoincrement())
+  productId   Int 
+  product     Products  @relation(fields: [productId],references: [id],onDelete: Cascade)
+  url         String
+}
+
+model GuestSession{
+  session_id  String @id 
+  expires     Int
+  data        Json
+  orders      Json?
+}
+
+enum userType{
+  ADMIN
+  USER
+}
+
+model User{
+  id                      Int @id @default(autoincrement())
+  name                    String
+  email                   String @unique
+  phone                   String @unique
+  postcode                Int
+  address_district        String
+  address_municipality    String
+  address_ward            Int
+  passsword               String
+  user_type               userType @default(USER)
+  cart                    Cart[]
+  order                   Order[]
+}
+
+model Cart{
+  id                  Int @id @default(autoincrement())
+  user_id             Int
+  user                User @relation(fields: [user_id],references: [id],onDelete: Cascade)
+  product_id          Int
+  product             Products @relation(fields: [product_id],references: [id],onDelete: Cascade)
+  quantity            Int
+  total_price         Int
+}
+
+enum OrderStats{
+  notSeen
+  delivering
+  delivered
+  cancelled
+}
+
+model Order{
+  id            String @id @default(uuid())
+  orderStatus   OrderStats @default(notSeen)
+  user_id       Int
+  user          User @relation(fields: [user_id],references: [id],onDelete: Cascade,onUpdate: Cascade)  
+  totalCost     Int
+  products      Json
+  shipping_info Json?
+  issuedAt      DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
