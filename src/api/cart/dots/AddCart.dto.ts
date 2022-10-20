@@ -14,7 +14,7 @@ class CartObjType {
 }
 
 export class AddCartDto {
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'product id and quantity is required' })
   @ValidateNested({ each: true })
   @Type(() => CartObjType)
   cart: CartObjType;

@@ -6,3 +6,4 @@
 {"from":"ferlan@gmail.com","to":"ADMIN","subject":"order status","message":"the order 24fb669c-4e29-4d1c-aba9-4eaa81ea9a7d is cancelled by user","sentAt":"2022-10-18T18:16:36.272Z"}
 {"from":"ferlan@gmail.com","to":"ADMIN","subject":"order status","message":"the order 24fb669c-4e29-4d1c-aba9-4eaa81ea9a7d is cancelled by user","sentAt":"2022-10-18T18:16:45.829Z"}
 {"from":"ferlani@gmail.com","to":"ADMIN","subject":"order status","message":"the order 5de44183-ea1c-4367-8dda-7aeec6e9c5cd is cancelled by user","sentAt":"2022-10-18T18:32:31.273Z"}
+{"from":"ADMIN","to":"ferlan@gmail.com","subject":"order status","message":"your order efd37936-5bf3-4549-ab2a-2f708ee34a34 status changed to delivering","sentAt":"2022-10-19T10:50:02.842Z"}
