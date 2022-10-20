@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/6cb58f2a-d962-42a6-8cd8-5e4c429445d0/AppServices/subscriptions/6cb58f2a-d962-42a6-8cd8-5e4c429445d0/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/ecommercewebo",
+  "appService.deploySubpath": "."
+}
