@@ -19,7 +19,7 @@ export class ProductService {
       take: query.limit ? query.limit : 10,
       skip: query.skip ? query.skip : 0,
       where: {
-        category: query.categories,
+        category: query.category,
         price: query.price,
       },
       include: {

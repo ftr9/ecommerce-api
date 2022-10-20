@@ -36,7 +36,7 @@ export class QueryParamDto {
 
   @IsOptional()
   @IsString()
-  categories: string;
+  category: string;
 
   @IsOptional()
   @IsNumber()

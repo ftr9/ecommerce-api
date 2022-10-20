@@ -24,7 +24,7 @@ export interface QueryParamType {
   };
   limit?: number;
   skip?: number;
-  categories: string;
+  category: string;
 }
 
 export interface ProductResponseBodyTypeId {
