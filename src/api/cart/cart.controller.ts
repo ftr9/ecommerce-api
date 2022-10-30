@@ -4,19 +4,20 @@ import {
   Get,
   Param,
   Post,
-  Req,
   Delete,
   Put,
   UseInterceptors,
 } from '@nestjs/common';
-import { AuthInterceptor } from '../user/auth/interceptors/auth.interceptor';
-import { AuthorizedUser, GuestUser } from '../user/decorators/user.decorators';
-import { User } from '@prisma/client';
 import { Request } from 'express';
-import { CartService } from './cart.service';
-
+import { User } from '@prisma/client';
+import { AuthInterceptor } from '../../common/interceptors/auth.interceptor';
+import {
+  AuthorizedUser,
+  GuestUser,
+} from '../../common/decorators/user.decorators';
 import { AddCartDto } from './dots/AddCart.dto';
 import { CartUpdateDto } from './dots/CartUpdate.dto';
+import { CartService } from './cart.service';
 
 @UseInterceptors(AuthInterceptor)
 @Controller('cart')

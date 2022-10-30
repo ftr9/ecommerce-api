@@ -1,4 +1,3 @@
-//library
 import {
   Injectable,
   HttpException,
@@ -7,14 +6,9 @@ import {
 } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
-//self coded
 import { JwtService } from 'src/utils/jwt/jwt.service';
-import {
-  signUpBodyType,
-  signResponseType,
-  signInBodyType,
-} from './interfaces/auth.interface';
-import { PrismaService } from '../../../prisma/prisma.service';
+import { signUpBodyType, signInBodyType } from './interfaces/auth.interface';
+import { PrismaService } from '../../../common/prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
@@ -22,6 +16,8 @@ export class AuthService {
     private readonly prismaService: PrismaService,
     private readonly jwtService: JwtService,
   ) {}
+
+  //@Post('signup')
   async signup(body: signUpBodyType) {
     try {
       //1. hash the password
@@ -41,7 +37,7 @@ export class AuthService {
         },
       });
       user.passsword = undefined;
-      //3. generare login to continue
+      //3. generate token and login to continue
       return {
         status: 'success',
         user: {
@@ -54,6 +50,7 @@ export class AuthService {
     }
   }
 
+  //@Post('signin')
   async signIn(body: signInBodyType) {
     //1.check if user with that email exists in DB
     const user = await this.prismaService.user.findUnique({

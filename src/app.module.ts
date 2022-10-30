@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { ProductModule } from './api/product/product.module';
-import { PrismaModule } from './prisma/prisma.module';
+import { PrismaModule } from './common/prisma/prisma.module';
 import { CartModule } from './api/cart/cart.module';
 import { UserModule } from './api/user/user.module';
 import { UtilsModule } from './utils/utils.module';

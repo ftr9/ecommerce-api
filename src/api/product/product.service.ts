@@ -1,20 +1,23 @@
 import { Injectable, NotFoundException, HttpException } from '@nestjs/common';
-import { PrismaService } from '../../prisma/prisma.service';
-import { Products, Prisma } from '@prisma/client';
+import { PrismaService } from '../../common/prisma/prisma.service';
+import { Prisma } from '@prisma/client';
 import {
   productBodyType,
-  ProductResponseInfoType,
   UpdateBodyType,
-  ProductResponseBodyType,
-  ProductResponseBodyTypeId,
   QueryParamType,
 } from './interfaces/product.interface';
 @Injectable()
 export class ProductService {
   constructor(private readonly prismaService: PrismaService) {}
-
+  private readonly findQueryIncludeOption = {
+    images: {
+      select: {
+        url: true,
+      },
+    },
+  };
   //@Get()
-  async getProducts(query: QueryParamType): Promise<ProductResponseBodyType[]> {
+  async getProducts(query: QueryParamType) {
     const products = await this.prismaService.products.findMany({
       take: query.limit ? query.limit : 10,
       skip: query.skip ? query.skip : 0,
@@ -22,13 +25,7 @@ export class ProductService {
         category: query.category,
         price: query.price,
       },
-      include: {
-        images: {
-          select: {
-            url: true,
-          },
-        },
-      },
+      include: { ...this.findQueryIncludeOption },
     });
     if (products.length === 0) throw new NotFoundException();
     return products.map((product) => ({
@@ -38,18 +35,12 @@ export class ProductService {
   }
 
   //@Get(:id)
-  async getProduct(productId: number): Promise<ProductResponseBodyTypeId> {
+  async getProduct(productId: number) {
     const product = await this.prismaService.products.findUnique({
       where: {
         id: productId,
       },
-      include: {
-        images: {
-          select: {
-            url: true,
-          },
-        },
-      },
+      include: { ...this.findQueryIncludeOption },
     });
     if (!product) {
       throw new NotFoundException(`product of id-${productId} does not exists`);
@@ -58,9 +49,7 @@ export class ProductService {
   }
 
   //@Post()
-  async addProduct(
-    productBody: productBodyType,
-  ): Promise<ProductResponseInfoType> {
+  async addProduct(productBody: productBodyType) {
     //1.insert product to products table
     try {
       const addedProducts = await this.prismaService.products.create({
@@ -97,10 +86,7 @@ export class ProductService {
   }
 
   //@Put(:id)
-  async updateProduct(
-    productId: number,
-    body: UpdateBodyType,
-  ): Promise<Products> {
+  async updateProduct(productId: number, body: UpdateBodyType) {
     const validProduct = await this.getProduct(productId);
     const updatedProduct = await this.prismaService.products.update({
       where: {
@@ -112,7 +98,7 @@ export class ProductService {
   }
 
   //@Delete(:id)
-  async deleteProduct(productId: number): Promise<ProductResponseInfoType> {
+  async deleteProduct(productId: number) {
     const validProduct = await this.getProduct(productId);
     const deletedProduct = await this.prismaService.products.delete({
       where: {

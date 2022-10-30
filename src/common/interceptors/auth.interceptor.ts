@@ -6,7 +6,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from 'src/utils/jwt/jwt.service';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/common/prisma/prisma.service';
 import { Request } from 'express';
 @Injectable()
 export class AuthInterceptor implements NestInterceptor {

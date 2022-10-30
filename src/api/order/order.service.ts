@@ -10,7 +10,7 @@ import { AuthService } from '../user/auth/auth.service';
 import { placeOrderBodyType } from './interfaces/placeOrderBody.interface';
 import { updateOrderBodyType } from './interfaces/updateOrderBody.interface';
 import { Response } from 'express';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/common/prisma/prisma.service';
 import { UnauthorizedException } from '@nestjs/common/exceptions';
 import { EmailService } from 'src/utils/email/email.service';
 
@@ -21,7 +21,7 @@ export class OrderService {
     private readonly prismaService: PrismaService,
     private readonly emailSerice: EmailService,
   ) {}
-  private readonly includeRelationProperty = {
+  private readonly includeUserProperty = {
     user: {
       select: {
         id: false,
@@ -65,7 +65,7 @@ export class OrderService {
       data: {
         orderStatus: body.orderstatus,
       },
-      include: this.includeRelationProperty,
+      include: this.includeUserProperty,
     });
 
     //3 send the updated message email
@@ -108,7 +108,7 @@ export class OrderService {
       data: {
         orderStatus: 'cancelled',
       },
-      include: this.includeRelationProperty,
+      include: this.includeUserProperty,
     });
 
     //4. send the updated email
@@ -214,7 +214,7 @@ export class OrderService {
         );
       }
       //1.sign up user
-      const user = await this.authService.signup(orderBody.userInfo);
+      const signedUpuser = await this.authService.signup(orderBody.userInfo);
       //2 calculate total cost from users session
       const totalProductsCost = guestUser.carts.reduce(
         (sum, cartItem) => sum + cartItem.product.total_price,
@@ -228,7 +228,7 @@ export class OrderService {
       //4.store in orders table
       const order = await this.prismaService.order.create({
         data: {
-          user_id: user['user'].data.id,
+          user_id: signedUpuser['user'].data.id,
           totalCost: totalProductsCost,
           products: cartProducts,
           shipping_info: orderBody.shipToDifferentAddress

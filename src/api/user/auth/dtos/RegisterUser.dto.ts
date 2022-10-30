@@ -7,24 +7,7 @@ import {
   IsPhoneNumber,
   IsInt,
   MinLength,
-  ValidateNested,
 } from 'class-validator';
-import { Type } from 'class-transformer';
-
-class addressObjDto {
-  @IsNotEmpty()
-  @IsString()
-  district: string;
-
-  @IsNotEmpty()
-  @IsString()
-  municipality: string;
-
-  @IsNotEmpty()
-  @IsNumber()
-  @IsPositive()
-  ward: number;
-}
 
 export class RegisterUserDto {
   @IsNotEmpty()

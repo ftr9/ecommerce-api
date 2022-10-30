@@ -13,7 +13,3 @@ export interface signInBodyType {
   email: string;
   password: string;
 }
-
-export interface signResponseType {
-  token: string;
-}

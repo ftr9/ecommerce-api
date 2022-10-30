@@ -10,27 +10,25 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { Products as ProductModel } from '@prisma/client';
-import { ProductResponseInfoType } from './interfaces/product.interface';
 import { ProductService } from './product.service';
 import { AddProductDto } from './dtos/AddProduct.dto';
 import { UpdateProductDto } from './dtos/UpdateProduct.dto';
 import { QueryParamDto } from './dtos/QueryParam.dto';
-import { AuthGuard } from '../user/auth/guards/Auth.guard';
-import { RolesGuard } from '../user/auth/guards/Roles.guard';
-import { Roles } from '../user/auth/decorators/roles.decorators';
+import { AuthGuard } from '../../common/guards/Auth.guard';
+import { RolesGuard } from '../../common/guards/Roles.guard';
+import { Roles } from '../../common/decorators/roles.decorators';
 
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get()
-  getProducts(@Query() query: QueryParamDto): Promise<ProductModel[]> {
+  getProducts(@Query() query: QueryParamDto) {
     return this.productService.getProducts(query);
   }
 
   @Get(':id')
-  getProduct(@Param('id', ParseIntPipe) id: number): Promise<ProductModel> {
+  getProduct(@Param('id', ParseIntPipe) id: number) {
     return this.productService.getProduct(id);
   }
 
@@ -38,7 +36,7 @@ export class ProductController {
   @UseGuards(RolesGuard)
   @UseGuards(AuthGuard)
   @Post()
-  addProduct(@Body() body: AddProductDto): Promise<ProductResponseInfoType> {
+  addProduct(@Body() body: AddProductDto) {
     return this.productService.addProduct(body);
   }
 
@@ -49,7 +47,7 @@ export class ProductController {
   updateProduct(
     @Param('id', ParseIntPipe) id: number,
     @Body() body: UpdateProductDto,
-  ): Promise<ProductModel> {
+  ) {
     return this.productService.updateProduct(id, body);
   }
 
@@ -57,7 +55,7 @@ export class ProductController {
   @UseGuards(RolesGuard)
   @UseGuards(AuthGuard)
   @Delete(':id')
-  deleteProduct(@Param('id') id: number): Promise<ProductResponseInfoType> {
+  deleteProduct(@Param('id') id: number) {
     return this.productService.deleteProduct(id);
   }
 }

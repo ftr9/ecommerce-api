@@ -10,11 +10,6 @@ export interface productBodyType {
   images: ImageType[];
 }
 
-export interface ProductResponseInfoType {
-  status: string;
-  message: string;
-}
-
 export interface QueryParamType {
   price?: {
     lte?: number;
@@ -24,7 +19,7 @@ export interface QueryParamType {
   };
   limit?: number;
   skip?: number;
-  category: string;
+  category?: string;
 }
 
 export interface ProductResponseBodyTypeId {
@@ -35,16 +30,6 @@ export interface ProductResponseBodyTypeId {
   inStock: boolean;
   category: string;
   images: ImageType[];
-}
-
-export interface ProductResponseBodyType {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  inStock: boolean;
-  category: string;
-  images: ImageType;
 }
 
 export interface UpdateBodyType {

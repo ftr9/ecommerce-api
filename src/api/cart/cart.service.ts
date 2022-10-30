@@ -12,7 +12,7 @@ import {
 } from './dots/CartResponse.dto';
 
 import { ProductService } from '../product/product.service';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/common/prisma/prisma.service';
 @Injectable()
 export class CartService {
   constructor(

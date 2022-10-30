@@ -5,7 +5,7 @@ export class UpdateOrderBodyDto {
   @IsNotEmpty()
   @IsEnum(OrderStats, {
     message:
-      'invalid status provided valid status are not seen,delivering,delivered,cancelled}',
+      'invalid status provided valid status are notSeen,delivering,delivered,cancelled}',
   })
   orderstatus: OrderStats;
 }

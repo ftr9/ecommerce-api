@@ -11,16 +11,19 @@ import {
   ParseUUIDPipe,
   Param,
 } from '@nestjs/common';
-import { AuthorizedUser, GuestUser } from '../user/decorators/user.decorators';
+import {
+  AuthorizedUser,
+  GuestUser,
+} from '../../common/decorators/user.decorators';
 import { User } from '@prisma/client';
 import { Request, Response } from 'express';
 import { PlaceOrderBodyDto } from './dtos/PlaceOrderBody.dto';
 import { OrderService } from './order.service';
-import { AuthInterceptor } from '../user/auth/interceptors/auth.interceptor';
+import { AuthInterceptor } from '../../common/interceptors/auth.interceptor';
 import { UpdateOrderBodyDto } from './dtos/UpdateOrder.dto';
-import { Roles } from '../user/auth/decorators/roles.decorators';
-import { RolesGuard } from '../user/auth/guards/Roles.guard';
-import { AuthGuard } from '../user/auth/guards/Auth.guard';
+import { Roles } from '../../common/decorators/roles.decorators';
+import { RolesGuard } from '../../common/guards/Roles.guard';
+import { AuthGuard } from '../../common/guards/Auth.guard';
 
 @Controller('order')
 export class OrderController {

@@ -6,13 +6,9 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { User } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class RolesGuard implements CanActivate {
-  constructor(
-    private readonly reflector: Reflector,
-    private readonly prismaService: PrismaService,
-  ) {}
+  constructor(private readonly reflector: Reflector) {}
   async canActivate(context: ExecutionContext) {
     const role = this.reflector.getAllAndOverride('roles', [
       context.getHandler(),
