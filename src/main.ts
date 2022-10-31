@@ -3,8 +3,10 @@ import { ValidationPipe } from '@nestjs/common/pipes';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
+import helmet from 'helmet';
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
+import * as csurf from 'csurf';
 import { guestSessionConfig } from 'session.config';
 
 async function bootstrap() {
@@ -16,9 +18,17 @@ async function bootstrap() {
     defaultVersion: '1',
   });
 
+  //@security-related HTTP header
+  app.use(helmet());
+
+  //@adds cookie to request object - req.cookies
   app.use(cookieParser());
+
   //@express session
   app.use(session(guestSessionConfig));
+
+  //@Cross-site request forgery
+  app.use(csurf());
 
   //@global validation pipe
   app.useGlobalPipes(
