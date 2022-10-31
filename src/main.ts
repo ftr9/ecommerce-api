@@ -6,7 +6,6 @@ import { AppModule } from './app.module';
 import helmet from 'helmet';
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
-import * as csurf from 'csurf';
 import { guestSessionConfig } from 'session.config';
 
 async function bootstrap() {
@@ -26,9 +25,6 @@ async function bootstrap() {
 
   //@express session
   app.use(session(guestSessionConfig));
-
-  //@Cross-site request forgery
-  app.use(csurf());
 
   //@global validation pipe
   app.useGlobalPipes(
