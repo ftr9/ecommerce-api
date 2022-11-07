@@ -20,12 +20,17 @@ export class AuthGuard implements CanActivate {
       request.headers.authorization.includes('Bearer')
     ) {
       const token = request.headers.authorization.split(' ')[1];
+      if (token.length === 0) {
+        throw new UnauthorizedException('user is not logged in');
+      }
+
       const decodedToken = await this.jwtService._verifyToken(token);
       const validUser = await this.prismaService.user.findUnique({
         where: {
           id: decodedToken?.id,
         },
       });
+
       if (!validUser) {
         throw new UnauthorizedException('user does not exists');
       }
