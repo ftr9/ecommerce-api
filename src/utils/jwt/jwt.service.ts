@@ -11,6 +11,10 @@ export class JwtService {
     });
   }
 
+  _expireToken() {
+    return { token: '' };
+  }
+
   async _verifyToken(jwtToken: string): Promise<jwt.JwtPayload> {
     try {
       const verifiedJwtPayload = jwt.verify(
