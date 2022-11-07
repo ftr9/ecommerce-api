@@ -9,6 +9,7 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { JwtService } from 'src/utils/jwt/jwt.service';
 import { signUpBodyType, signInBodyType } from './interfaces/auth.interface';
 import { PrismaService } from '../../../common/prisma/prisma.service';
+import * as JWT from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
@@ -78,6 +79,10 @@ export class AuthService {
     return {
       token: jwtToken,
     };
+  }
+
+  logout() {
+    return this.jwtService._expireToken();
   }
 
   _catchSignUpError(err) {
