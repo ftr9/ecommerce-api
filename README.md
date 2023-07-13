@@ -1,11 +1,11 @@
 # Ecommerce api Backend with nest js 
 
 # features
-[x] : Add to cart without login
-[x] : session and cookies for user authentication and authorization
-[x] : Sending emails upon ordering something
-[x] : proper error grouping and input validation
-[x] : modular architecture and clean code practices
+[x] Add to cart without login
+[x] session and cookies for user authentication and authorization
+[x] Sending emails upon ordering something
+[x] proper error grouping and input validation
+[x] modular architecture and clean code practices
 
 # Tech stack used
 
