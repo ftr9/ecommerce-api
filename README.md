@@ -1,4 +1,11 @@
-# Ecommerce Backend with nest js <#WEBO>.
+# Ecommerce api Backend with nest js 
+
+- features
+  [ X ] : Add to cart without login
+  [ X ] : session and cookies for user authentication and authorization
+  [ X ] : Sending emails upon ordering something
+  [ X ] : proper error grouping and input validation
+  [ X ] : modular architecture and clean code practices
 
 # Tech stack used
 
